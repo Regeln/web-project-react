@@ -1,5 +1,5 @@
 export default {
-    items : [
+    products : [
         {
             _id: "1",
             name: "Pepperoni",
