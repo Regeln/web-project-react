@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import './App.css';
 
 import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
 
 
 
@@ -22,6 +23,7 @@ function App() {
                 <section>
                     <div className="content">
                         <Routes>
+                            <Route path="/product/:id" element={<ProductPage />} />
                             <Route path="/" element={<HomePage />} />
                         </Routes>
                     </div>
