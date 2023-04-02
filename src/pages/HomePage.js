@@ -1,39 +1,26 @@
-import React from "react";
+import { Link } from "react-router-dom";
+import items from "../items";
 
 function HomePage() {
     return (
         <div>
             <ul className="products-list">
-                <li>
-                    <div className="product">
-                        <img className="product-image" src="images/p1.jpg" alt=""/>
-                        <div className="product-name">
-                            <a href="product.html">Папероні</a>
+                {items.products.map(product => 
+                    <li>
+                        <div className="product">
+                            <Link to={"product/" + product._id}>
+                                <img className="product-image" src={product.image} alt=""/>
+                            </Link>
+                            <div className="product-name">
+                                <Link to={"/product/" + product._id}>{product.name}</Link>
+                            </div>
+                            <div className="product-price">{product.price} грн</div>
                         </div>
-                        <div className="product-price">150 грн</div>
-                    </div>
-                </li>
-                <li>
-                    <div className="product">
-                        <img className="product-image" src="images/p2.jpg" alt=""/>
-                        <div className="product-name">
-                            <a href="product.html">Американа</a>
-                        </div>
-                        <div className="product-price">140 грн</div>
-                    </div>
-                </li>
-                <li>
-                    <div className="product">
-                        <img className="product-image" src="images/p3.jpg" alt=""/>
-                        <div className="product-name">
-                            <a href="product.html">Прошуто</a>
-                        </div>
-                        <div className="product-price">120 грн</div>
-                    </div>
-                </li>
+                    </li>
+                )}
             </ul> 
         </div>
-    )
+    );
 }
 
 export default HomePage;
