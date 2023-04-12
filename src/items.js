@@ -11,14 +11,14 @@ export default {
             _id: "2",
             name: "Американа",
             category: "pizza",
-            image: "images/p2.jpg",
+            image: "/images/p2.jpg",
             price: 140
         },
         {
             _id: "3",
             name: "Прошуто",
             category: "pizza",
-            image: "images/p3.jpg",
+            image: "/images/p3.jpg",
             price: 120
         }
     ]
