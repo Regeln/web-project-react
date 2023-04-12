@@ -6,7 +6,7 @@ function HomePage() {
 
     const loadProducts = async () => {
         const data = await (
-            await fetch("http://localhost:4000/api/products")
+            await fetch("http://localhost:4000/products")
         ).json();
         setProducts(data.products);
     };
