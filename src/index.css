@@ -118,3 +118,28 @@ p {
     text-transform: uppercase;
     margin-top: 40px;   
 }
+
+.user-form {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;   
+    align-items: center;
+    justify-content: center;
+}
+
+.form-email {
+    margin-bottom: 10px;
+}
+.form-password {
+    margin-bottom: 20px;
+}
+
+.submit-button {
+    font-size: 1.5rem;  
+    margin-top: 10px;
+    width: 100px;
+    border-radius: 500px;
+    color: white;
+    background-color: black;
+    cursor: pointer;
+}
