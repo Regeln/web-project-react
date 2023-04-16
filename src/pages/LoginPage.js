@@ -9,7 +9,9 @@ function LoginPage() {
         const res = await fetch(`${REACT_BACKEND_URL}/auth/login`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(userData)
+            body: JSON.stringify(userData),
+            withCredentials: true,
+            credentials: "include"
         });
     
         const data = await res.json();

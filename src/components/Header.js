@@ -30,7 +30,7 @@ function Header() {
     }
 
     return (
-        <header className="header">
+        <div className="header">
             <NavLink to="/" className="header-menu">foodLike</NavLink>
             {!isLoggedIn && ( 
                 <div className="header-links">
@@ -45,7 +45,7 @@ function Header() {
                     <button onClick={onLogout}>Вийти</button>
                 </div>
             )}
-        </header>
+        </div>
     );
 }
 
