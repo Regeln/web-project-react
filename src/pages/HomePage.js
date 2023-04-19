@@ -1,38 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
-
-function HomePage() {
-    const [products, setProducts] = useState([]);
-
-    const loadProducts = async () => {
-        const data = await (
-            await fetch("http://localhost:4000/products")
-        ).json();
-        setProducts(data.products);
-    };
-
-    useEffect(() => {
-        loadProducts();
-    }, []);
-
-    
+function HomePage() {    
     return (
         <div>
-            <ul className="products-list">
-                {products.map(product => 
-                    <li key={product._id}>
-                        <div className="product">
-                            <Link to={"product/" + product._id}>
-                                <img className="product-image" src={product.image} alt=""/>
-                            </Link>
-                            <div className="product-name">
-                                <Link to={"/product/" + product._id}>{product.name}</Link>
-                            </div>
-                            <div className="product-price">{product.price} грн</div>
-                        </div>
-                    </li>
-                )}
-            </ul> 
+            HOME PAGE
         </div>
     );
 }
