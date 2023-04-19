@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
 import { REACT_BACKEND_URL } from "../constants";
-
+import { Context } from "../App";
 
 function Header() {
-    const [isLoggedIn, setIsLoggedIn] = useState(
-        !!localStorage.getItem("userToken")
-    );
-
     const [currentUser, setCurrentUser] = useState({});
+    const { isLoggedIn, setIsLoggedIn } = useContext(Context);
+
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchCurrentUser() {
@@ -22,30 +21,39 @@ function Header() {
         if (isLoggedIn) {
             fetchCurrentUser();
         }
-    }, []);
+    }, [isLoggedIn]);
 
-    const onLogout = () => {
+    const onLogout = async () => {
+        await fetch(`${REACT_BACKEND_URL}/auth/logout`, {
+            method: "POST",
+            withCredentials: true,
+            credentials: "include"
+        })
         localStorage.removeItem("userToken");
+        setCurrentUser({});
         setIsLoggedIn(false);
+        navigate("/");
     }
 
     return (
-        <div className="header">
-            <NavLink to="/" className="header-menu">foodLike</NavLink>
+        <header className="header">
+            <NavLink to={!isLoggedIn ? "/" : "/category/pizza"} className="header-logo">foodLike</NavLink>
             {!isLoggedIn && ( 
-                <div className="header-links">
-                    <NavLink to="/login">Вхід</NavLink>
-                    <NavLink to="/signup">Реєстрація</NavLink>
+                <div className="header-menu">
+                    <NavLink className="header-menu-item" to="/login">Вхід</NavLink>
+                    <NavLink className="header-menu-item" to="/signup">Реєстрація</NavLink>
                 </div>
             )}
             {isLoggedIn && (
-                <div className="header-links">
-                    <span className="login-status">{currentUser.email}</span>
-                    <NavLink to="/cart">Корзина</NavLink>
-                    <button onClick={onLogout}>Вийти</button>
+                <div className="header-menu">
+                    <span className="header-menu-user">{currentUser.email}</span>
+                    <NavLink className="header-menu-item" to="/cart">Корзина</NavLink>
+                    <span className="header-menu-item">
+                        <button onClick={onLogout}>Вийти</button>
+                    </span>
                 </div>
             )}
-        </div>
+        </header>
     );
 }
 
