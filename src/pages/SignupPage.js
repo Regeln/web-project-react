@@ -17,7 +17,7 @@ function SignupPage() {
         if (res.status >= 400) {
             setError(data.message);
         } else {
-            navigate("/");  
+            navigate("/login");  
         }
     }
 

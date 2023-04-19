@@ -35,11 +35,11 @@ function UserForm({ title, onSubmit, submitCaption }) {
                 ref={passwordInput}
             />
 
-            <div className="submit-error">{error}</div>
-
             <button className="submit-button" onClick={internalOnSubmit}>
                 {submitCaption}
             </button>
+            
+            <div className="submit-error">{error}</div>
         </div>
     );
 }
