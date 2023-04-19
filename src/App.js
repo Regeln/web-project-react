@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import ProductsListPage from "./pages/ProductListPage";
+import ProductListPage from "./pages/ProductListPage";
 import CartPage from "./pages/CartPage";
 import Header from "./components/Header";
 import RequireAuth from "./components/RequireAuth";
@@ -27,7 +27,7 @@ function App() {
                         <Routes>
                             <Route element={<RequireAuth />}>
                                 <Route path="/cart" element={<CartPage />} />
-                                <Route path="/category/:category" element={<ProductsListPage />} />
+                                <Route path="/category/:category" element={<ProductListPage />} />
                                 <Route path="/product/:id" element={<ProductPage />} />
                             </Route>
                             
