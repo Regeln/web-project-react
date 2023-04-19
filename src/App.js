@@ -6,37 +6,39 @@ import HomePage from "./pages/HomePage";
 import ProductPage from "./pages/ProductPage";
 import LoginPage from "./pages/LoginPage";
 import SignupPage from "./pages/SignupPage";
-import ProductsListPage from "./pages/ProductsListPage";
+import ProductsListPage from "./pages/ProductListPage";
 import CartPage from "./pages/CartPage";
 import Header from "./components/Header";
+import RequireAuth from "./components/RequireAuth";
+
+export const Context = React.createContext({});
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(
         !!localStorage.getItem("userToken")
     );
-
+    
     return (
-        <BrowserRouter>
-            <div className="grid-container">
-                <Header />
-                <section>
-                    <div className="content">
+        <Context.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+            <BrowserRouter>
+                <div className="grid-container">
+                    <Header />
+                    <section className="content">
                         <Routes>
-                            {isLoggedIn && 
-                                <>
-                                    <Route path="/cart" element={<CartPage />} />
-                                    <Route path="/category/:id" element={<ProductsListPage />} />
-                                    <Route path="/product/:id" element={<ProductPage />} />
-                                </> 
-                            }
+                            <Route element={<RequireAuth />}>
+                                <Route path="/cart" element={<CartPage />} />
+                                <Route path="/category/:category" element={<ProductsListPage />} />
+                                <Route path="/product/:id" element={<ProductPage />} />
+                            </Route>
+                            
                             <Route path="/signup" element={<SignupPage />} />
                             <Route path="/login" element={<LoginPage />} /> 
                             <Route path="/" element={<HomePage />} />
                         </Routes>
-                    </div>
-                </section>
-            </div>
-        </BrowserRouter>
+                    </section>
+                </div>
+            </BrowserRouter>
+        </Context.Provider>
     );
 }
 
